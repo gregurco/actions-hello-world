@@ -1,17 +1,12 @@
-name: CI
+name: Check security vulnerabilities
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  build:
-
+  security-advisories:
+    name: SecurityAdvisories
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+    - uses: actions/checkout@master
+    - name: SecurityAdvisories
+      uses: docker://gregurco/security-advisories-ga
